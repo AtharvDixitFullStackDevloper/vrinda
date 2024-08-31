@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surprise Gift</title>
+    <style>
+ body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            transition: background 1s ease-in-out;
+        }
+
+        .container {
+            position: relative;
+            text-align: center;
+        }
+
+        .gift-box {
+            width: 200px;
+            height: 200px;
+            background-color: #ff6f61;
+            position: relative;
+            cursor: pointer;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            animation: float 2s ease-in-out infinite;
+            transition: transform 0.5s;
+        }
+
+        .gift-box:hover {
+            transform: scale(1.1);
+        }
+
+        .gift-box::before,
+        .gift-box::after {
+            content: '';
+            position: absolute;
+            background-color: #fff;
+        }
+
+        .gift-box::before {
+            width: 200px;
+            height: 20px;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            border-radius: 10px;
+        }
+
+        .gift-box::after {
+            width: 20px;
+            height: 200px;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 10px;
+        }
+
+        .lid {
+            width: 200px;
+            height: 60px;
+            background-color: #ff4e50;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 20px 20px 0 0;
+            transform-origin: top;
+            transition: transform 0.6s ease-in-out;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .message {
+            font-family: 'Arial', sans-serif;
+            margin-top: 20px;
+            color: #fff;
+            display: none;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .message h1 {
+            font-size: 28px;
+            margin: 0;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .message p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        button {
+            background-color: #ff4e50;
+            border: none;
+            padding: 12px 25px;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 25px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #ff6f61;
+            transform: scale(1.1);
+        }
+
+        .heart {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 400px;
+            height: 400px;
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 0.5s ease-in-out;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .heart video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+
+        .heart-text {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            font-size: 24px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            width: 30px;
+            height: 30px;
+            background-color: #ff4e50;
+            border-radius: 50%;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-size: 20px;
+            font-weight: bold;
+            z-index: 10;
+            transition: background-color 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background-color: #ff6f61;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        /* Media Queries */
+        @media (max-width: 600px) {
+            .gift-box {
+                width: 150px;
+                height: 150px;
+            }
+
+            .gift-box::before {
+                width: 150px;
+            }
+
+            .gift-box::after {
+                height: 150px;
+            }
+
+            .lid {
+                width: 150px;
+                height: 45px;
+            }
+
+            .message h1 {
+                font-size: 24px;
+            }
+
+            .message p {
+                font-size: 16px;
+            }
+
+            button {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+
+            .heart {
+                width: 300px;
+                height: 300px;
+            }
+
+            .heart-text {
+                font-size: 18px;
+            }
+
+            .close-btn {
+                width: 25px;
+                height: 25px;
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .gift-box {
+                width: 120px;
+                height: 120px;
+            }
+
+            .gift-box::before {
+                width: 120px;
+            }
+
+            .gift-box::after {
+                height: 120px;
+            }
+
+            .lid {
+                width: 120px;
+                height: 36px;
+            }
+
+            .message h1 {
+                font-size: 20px;
+            }
+
+            .message p {
+                font-size: 14px;
+            }
+
+            button {
+                padding: 8px 16px;
+                font-size: 12px;
+            }
+
+            .heart {
+                width: 250px;
+                height: 250px;
+            }
+
+            .heart-text {
+                font-size: 16px;
+            }
+
+            .close-btn {
+                width: 20px;
+                height: 20px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="gift-box" onclick="openGift()">
+            <div class="lid"></div>
+        </div>
+        <div class="message" id="message">
+            <h1>You're My Sunshine!</h1>
+            <p>Just wanted to let you know how much you mean to me!</p>
+            <button onclick="showHeart()">Uncover the Love</button>
+        </div>
+    </div>
+    <script>
+        function openGift() {
+    const lid = document.querySelector('.lid');
+    lid.style.transform = 'rotateX(-180deg)';
+    setTimeout(() => {
+        document.querySelector('.gift-box').classList.add('hidden');
+        const message = document.getElementById('message');
+        message.style.display = 'block';
+        setTimeout(() => {
+            message.style.opacity = 1; // Only fade-in effect
+        }, 100);
+    }, 600);
+}
+
+function showHeart() {
+    heartContainer = document.createElement('div');
+    heartContainer.className = 'heart';
+
+    const heartVideo = document.createElement('video');
+    heartVideo.src = './assets/vrinda.mp4'; // Replace with your heart video URL
+    heartVideo.autoplay = true;
+    heartVideo.loop = true;
+    heartVideo.playsInline = true;
+
+    heartVideo.onplay = function() {
+        // Hide the message text when the video starts playing
+        const message = document.getElementById('message');
+        message.style.display = 'none'; // Hide the message text
+
+        playBackgroundVideo(heartVideo.src); // Play video as background when it starts
+    };
+
+    heartContainer.appendChild(heartVideo);
+
+    const heartText = document.createElement('div');
+    heartText.className = 'heart-text';
+    heartText.textContent = 'I love you, Vrinda';
+
+    heartContainer.appendChild(heartText);
+    document.body.appendChild(heartContainer);
+
+    setTimeout(() => {
+        heartContainer.style.transform = 'translate(-50%, -50%) scale(1)';
+    }, 100);
+
+    // Create the close button
+    const closeButton = document.createElement('div');
+    closeButton.className = 'close-btn';
+    closeButton.innerHTML = '&times;';
+    closeButton.onclick = closeVideos;
+    document.body.appendChild(closeButton);
+}
+
+function playBackgroundVideo(videoSrc) {
+    bgVideo = document.createElement('video');
+    bgVideo.src = videoSrc;
+    bgVideo.autoplay = true;
+    bgVideo.loop = true;
+    bgVideo.muted = true; // Muted for background video
+    bgVideo.playsInline = true;
+    bgVideo.style.position = 'fixed';
+    bgVideo.style.top = '0';
+    bgVideo.style.left = '0';
+    bgVideo.style.width = '100%';
+    bgVideo.style.height = '100%';
+    bgVideo.style.objectFit = 'cover';
+    bgVideo.style.zIndex = '-1';
+
+    document.body.appendChild(bgVideo);
+    document.body.style.background = 'none';
+}
+
+function closeVideos() {
+    if (bgVideo) {
+        bgVideo.pause();
+        bgVideo.remove();
+        document.body.style.background = 'linear-gradient(135deg, #f6d365 0%, #fda085 100%)';
+    }
+    if (heartContainer) {
+        heartContainer.remove(); // Remove the entire heart container, including the video
+    }
+    const closeButton = document.querySelector('.close-btn');
+    if (closeButton) {
+        closeButton.remove();
+    }
+
+    // Show the message text again
+    const message = document.getElementById('message');
+    if (message) {
+        message.style.display = 'block';
+        message.style.opacity = 1; // Restore the fade-in effect
+    }
+}
+
+    </script>
+</body>
+</html>
